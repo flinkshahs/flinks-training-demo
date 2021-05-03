@@ -11,7 +11,8 @@ Make sure to install
 
 To run the app:
 ```bash
-git clone
+git clone https://github.com/flinkshahs/flinks-training-demo.git
+cd ClientApp
 npm install
 npm start
 ```
