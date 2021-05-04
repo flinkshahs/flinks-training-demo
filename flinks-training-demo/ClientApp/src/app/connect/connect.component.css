@@ -1,9 +1,10 @@
 @media (min-width: 768px) {
   .flinksconnect {
     width: 100%;
+    overflow: auto;
+    border: none;
   }
-}
-
-iframe {
-  overflow: hidden;
+  .connect-container {
+    overflow: hidden;
+  }
 }
