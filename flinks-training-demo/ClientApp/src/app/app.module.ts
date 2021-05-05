@@ -24,8 +24,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'get-account-details', component: CounterComponent },
+      { path: 'log-out', component: FetchDataComponent },
     ])
   ],
   providers: [],
