@@ -32,16 +32,25 @@ namespace flinks_training_demo
 
             Console.WriteLine(" hi Main Method");
             Console.WriteLine((response.SecurityChallenges).First().Prompt);
+            
 
 
             SecurityChallenge sc = (response.SecurityChallenges).First();
 
-            sc.Answer = "Canada";
 
-            apiClient.AnswerMfaQuestionsAndAuthorize(response.RequestId,response.SecurityChallenges);
+            //need to use input from user
+           // String answer = "";
+            
+           //answer = (string) Console.ReadLine();
 
+           sc.Answer = "Triangle";
+            
+            //Console.WriteLine("You answered = '{0}' ",  answer);
 
+            var resp2 = apiClient.AnswerMfaQuestionsAndAuthorize((System.Guid) response.RequestId,response.SecurityChallenges);
 
+            
+            Console.WriteLine(resp2);
 
            // CreateHostBuilder(args).Build().Run();
         }
