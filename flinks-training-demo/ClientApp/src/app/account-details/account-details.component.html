@@ -1,0 +1,26 @@
+<h2>Holder</h2>
+
+<ul class="holder_info">
+    <li>Name: {{holder.Name}}</li>
+    <li>Address Info</li>
+    <ul>
+        <li>CivicAddress: {{holder.Address.CivicAddress}}</li>
+        <li>City: {{holder.Address.City}}</li>
+        <li>Province: {{holder.Address.Province}}</li>
+        <li>PostalCode {{holder.Address.PostalCode}}</li>
+        <li>Country: {{holder.Address.Country}}</li>
+    </ul>
+    <li>Email: {{holder.Email}}</li>
+    <li>PhoneNumber: {{holder.PhoneNumber}}</li>
+</ul>
+
+<h2>Transactions:</h2>
+
+<ul *ngFor="let transaction of transactions; index as i">
+    <li>Transaction {{i}}:</li>
+    <ul>
+        <li>Date: {{transaction.Date}}</li>
+        <li>Decription: {{transaction.Description}}</li>
+        <li>Balance: {{transaction.Balance}}</li>
+    </ul>
+</ul>
