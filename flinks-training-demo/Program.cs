@@ -6,6 +6,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Flinks.CSharp.SDK;
+using Flinks.CSharp.SDK.Model.Attributes;
+using Flinks.CSharp.SDK.Model.Authorize;
+using Flinks.CSharp.SDK.Model.Constant;
+using Flinks.CSharp.SDK.Model.DeleteCard;
+using Flinks.CSharp.SDK.Model.Enums;
+using Flinks.CSharp.SDK.Model.GetAccountsDetail;
+using Flinks.CSharp.SDK.Model.GetAccountsSummary;
+using Flinks.CSharp.SDK.Model.GetStatement;
+using Flinks.CSharp.SDK.Model.Score;
+using Flinks.CSharp.SDK.Model.Shared;
+
+
 
 namespace flinks_training_demo
 {
@@ -13,7 +26,24 @@ namespace flinks_training_demo
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
+            var response =  apiClient.Authorize("FlinksCapital", "Greatday", "Everyday", true, false, true, RequestLanguage.en, true);
+
+
+            Console.WriteLine(" hi Main Method");
+            Console.WriteLine((response.SecurityChallenges).First().Prompt);
+
+
+            SecurityChallenge sc = (response.SecurityChallenges).First();
+
+            sc.Answer = "Canada";
+
+            apiClient.AnswerMfaQuestionsAndAuthorize(response.RequestId,response.SecurityChallenges);
+
+
+
+
+           // CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

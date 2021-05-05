@@ -24,6 +24,11 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\sdk-csharp\Source\Flinks.CSharp.SDK\Flinks.CSharp.SDK.csproj" />
+    <ProjectReference Include="..\..\sdk-csharp\Source\Flinks.CSharp.SDK.Model\Flinks.CSharp.SDK.Model.csproj" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
