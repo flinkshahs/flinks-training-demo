@@ -12,11 +12,9 @@ Make sure to install
 To run the app:
 ```bash
 git clone https://github.com/flinkshahs/flinks-training-demo.git
-cd ClientApp
-npm install
-npm start
+dotnet run
 ```
 
-Should run on `localhost:4200`.
+Should run on `localhost:5001`.
 
 Get started with: https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/angular?view=aspnetcore-5.0&tabs=visual-studio
