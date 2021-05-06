@@ -27,31 +27,31 @@ namespace flinks_training_demo
     {
         public static void Main(string[] args)
         {
-            var apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
-            var response =  apiClient.Authorize("FlinksCapital", "Greatday", "Everyday", true, false, true, RequestLanguage.en, true);
+        //     var apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
+        //     var response =  apiClient.Authorize("FlinksCapital", "Greatday", "Everyday", true, false, true, RequestLanguage.en, true);
 
 
-            Console.WriteLine(" hi Main Method");
-            Console.WriteLine((response.SecurityChallenges).First().Prompt);
+        //     Console.WriteLine(" hi Main Method");
+        //     Console.WriteLine((response.SecurityChallenges).First().Prompt);
             
 
 
-            SecurityChallenge sc = (response.SecurityChallenges).First();
+        //     SecurityChallenge sc = (response.SecurityChallenges).First();
 
 
-            //need to use input from user
-           String answer = "";
+        //     //need to use input from user
+        //    String answer = "";
             
-           //answer = (string) Console.ReadLine();
+        //    //answer = (string) Console.ReadLine();
 
-           sc.Answer = "Triangle";
+        //    sc.Answer = "Triangle";
             
-            //Console.WriteLine("You answered = '{0}' ",  answer);
+        //     //Console.WriteLine("You answered = '{0}' ",  answer);
 
-            var resp2 = apiClient.AnswerMfaQuestionsAndAuthorize((System.Guid) response.RequestId,response.SecurityChallenges);
+        //     var resp2 = apiClient.AnswerMfaQuestionsAndAuthorize((System.Guid) response.RequestId,response.SecurityChallenges);
 
             
-            Console.WriteLine(resp2);
+        //     Console.WriteLine(resp2);
 
            CreateHostBuilder(args).Build().Run();
         }
