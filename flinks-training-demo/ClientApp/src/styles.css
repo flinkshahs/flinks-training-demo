@@ -174,8 +174,11 @@ td .fa-cutlery {
     border-radius: 50%
 }
 
-td .fa-exchange {
-  color: #b15ac7
+td .fa-arrows-h {
+  color: #b15ac7;
+  background-color: #444;
+    padding: 5px;
+    border-radius: 50%
 }
 
 .navbar-brand p {
@@ -269,7 +272,7 @@ tbody tr td .fa-long-arrow-down {
 .pagination .page-item .page-link {
     background-color: #444;
     color: #fff;
-    padding: 0.3rem .75rem;
+    padding: 10%;
     border: none;
     border-radius: 0
 }
