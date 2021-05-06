@@ -1,8 +1,33 @@
-<h1>Account Summary</h1>
+<!--
+<h1> Account Summary</h1>
+-->
 
-<div *ngIf = "selectedAccount">
-<p>{{selectedAccount.title}} Account - {{selectedAccount.accountNumber}}</p>
+<!-- Flinks Connect 
+<iframe height="760"
+    src="https://toolbox-iframe.private.fin.ag/?demo=true&redirectUrl=https://flinks.com/contact/thank-you&innerRedirect=true&theme=light&consentEnable=true&customerName=FinTech&backgroundColor=f7f7f7&foregroundColor1=000000&desktopLayout=true&headerEnable=false&institutionFilterEnable=true">
+</iframe>
+
+ Event Listener  
+<script>
+   window.addEventListener('message', function(e) {
+   console.log(e.data)
+   });
+</script>
+
+-->
+<div *ngIf = "selectedAccount" class="wrapper rounded">
+  <nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white title">Account Summary <a class = "ul" *ngIf = "selectedAccount.title"> –– {{selectedAccount.title}}</a><p class="pl-1 text-muted">The details of your account are below.</p> </a>
+      
+          <!-- <ul class="navbar-nav ml-lg-auto">
+              <li class="nav-item"> <a class="nav-link" href="#"><span class="fa fa-bell-o font-weight-bold"></span> <span class="notify">Notifications</span> </a> </li>
+              <li class="nav-item "> <a href="#"><span class="fa fa-search"></span></a> <input type="search" class="dark" placeholder="Search"> </li>
+          </ul> -->
+      
+  </nav>
+
+<p class = "text-white pt-3">{{selectedAccount.type}} Account in {{selectedAccount.currency}} - #{{selectedAccount.accountNumber}}</p>
 <!--outputting account information and checking if some values are null if a login id exists-->
+<!--
 <ul>
   <li *ngIf = "selectedAccount.holder">Account Holder: {{selectedAccount.holder}}</li>
   <li *ngIf = "selectedAccount.transitNumber">Transit #: {{selectedAccount.transitNumber}} </li>
@@ -11,16 +36,137 @@
   <li>Account Type: {{selectedAccount.type}}</li>
   <li>Currency: {{selectedAccount.currency}}</li>
 </ul>
-<p>Balances</p>
-<ul>
-  <li *ngIf = "selectedAccount.availableBalance">Available Balance: ${{selectedAccount.availableBalance}}</li>
-  <li *ngIf = "selectedAccount.currentBalance"> Current Balance: ${{selectedAccount.currentBalance}}</li>
-  <li *ngIf = "selectedAccount.limitBalance">Limit Balance: ${{selectedAccount.limitBalance}}</li>
-</ul>
+-->
+
+<div class="row mt-3 pt-2 d-flex align-items-center">
+  <div *ngIf = "selectedAccount.transitNumber" class="col-sm ">
+      <div class="d-flex align-items-center">
+          <td scope="row"> <span class="fa fa-exchange mb-3"></span>  </td>
+          <p class="text mx-3">Transit Number:</p>
+          <p class="text-white ml-4 ">{{selectedAccount.transitNumber}}</p>
+      </div>
+  </div>
+  <div *ngIf = "selectedAccount.institutionNumber" class="col-sm">
+      <div class=" d-flex align-items-center">
+          <td scope="row"> <span class="fa fa-briefcase mb-3"></span>  </td>
+          <div class="text mx-3 mb-3">Institution Number</div>
+          <div class="text-white ml-4 mb-3 ">{{selectedAccount.institutionNumber}}</div>
+      </div>
+  </div>
+  <div *ngIf = "selectedAccount.overdraftLimit"  class="col-sm">
+    <div class=" d-flex align-items-center">
+      <td scope="row"> <span class="fa fa-long-arrow-up mb-3"></span>  </td>
+        <div class="text mx-3 mb-3">Overdraft Limit</div>
+        <div class="text-white mb-3 ml-4 ">${{selectedAccount.overdraftLimit}}</div>
+    </div>
+</div>
+</div>
+<!--
+<div class="table-responsive mt-3">
+  <table class="table table-dark table-borderless">
+      <thead>
+          <tr>
+              <th scope="col">Activity</th>
+              <th scope="col">Date</th>
+              <th scope="col" class="text-right">Amount</th>
+          </tr>
+      </thead>
+  </table>
 </div>
 
+-->
+
+
+
+
+<div *ngIf="selectedAccount.availableBalance || selectedAccount.currentBalance || selectedAccount.limitBalance">
+
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <a class = "text-white"> Balances</a>
+  </div>
+  <div class="row mt-3 pt-2 d-flex align-items-center">
+    <div *ngIf = "selectedAccount.availableBalance" class="col-sm ">
+        <div class="d-flex align-items-center">
+            <p class="text-balance mx-3">Available Balance:</p>
+            <p class=" ml-4 money">${{selectedAccount.availableBalance}}</p>
+        </div>
+    </div>
+    <div *ngIf = "selectedAccount.currentBalance" class="col-sm">
+        <div class=" d-flex align-items-center">
+            <div class="text-balance mx-3 mb-3">Current Balance</div>
+            <div class="ml-4 mb-3 money">${{selectedAccount.currentBalance}}</div>
+        </div>
+    </div>
+    <div *ngIf = "selectedAccount.limitBalance"  class="col-sm">
+      <div class=" d-flex align-items-center">
+          <div class="text-balance mx-3 mb-3">Balance Limit</div>
+          <div class="mb-3 ml-4 money">${{selectedAccount.limitBalance}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!--
+  
+  <div class="table-responsive mt-3">
+    <table class="table table-dark table-borderless">
+      <tbody >
+        <tr *ngIf = "selectedAccount.availableBalance">
+            <td class = "d-flex justify-content-around align-items-center"> <p class = "mr-4">Available Balance: </p><p class = "ml-4">${{selectedAccount.availableBalance}}</p></td>
+            <td class="d-flex justify-content-start align-items-center">  ${{selectedAccount.availableBalance}} </td>
+        </tr>
+        <tr *ngIf = "selectedAccount.currentBalance">
+            <td scope="row"> <span class="fa mr-2 justify-content-end"></span> Current Balance: </td>
+            <td class="d-flex justify-content-centre align-items-center"> <span class="fa mr-2"></span> ${{selectedAccount.currentBalance}} </td>
+        </tr>
+        <tr *ngIf = "selectedAccount.limitBalance">
+          <td scope="row"> <span class="fa mr-2 justify-content-end"></span>Balance Limit: </td>
+          <td class="d-flex justify-content-centre align-items-center"> <span class="fa mr-2"></span> ${{selectedAccount.limitBalance}} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
+
+
+
+<!--
+<ul>
+<li *ngIf = "selectedAccount.availableBalance">Available Balance: ${{selectedAccount.availableBalance}}</li>
+<li *ngIf = "selectedAccount.currentBalance"> Current Balance: ${{selectedAccount.currentBalance}}</li>
+<li *ngIf = "selectedAccount.limitBalance">Limit Balance: ${{selectedAccount.limitBalance}}</li>
+</ul>
+-->
+
+
+
 <!--if no log in id output message-->
-<div *ngIf = "!selectedAccount">You have not yet logged in successfully.</div>
+
+<div class = " dark wrapper rounded" *ngIf = "!selectedAccount">
+<nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand"><p class="text-white pl-1">You have not yet logged in successfully.</p> </a> 
+</nav>
+</div>
+
+
+
+
+
+
+
+<div class="d-flex justify-content-between align-items-center results"> <span class="pl-md-3">Showing<b class="text-white"> Put something here? </b> for now</span>
+<div class="pt-3">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item disabled"> <a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&lt;</span> </a> </li>
+            <li class="page-item disabled"> <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&gt;</span> </a> </li>
+        </ul>
+    </nav>
+</div>
+</div>
+
 
 <!--button to test functionality if successful log in-->
 <button (click) = changeInfo()>Successful Log In Simulation</button>
