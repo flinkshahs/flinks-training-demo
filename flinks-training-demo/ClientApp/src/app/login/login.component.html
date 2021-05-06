@@ -2,7 +2,7 @@
 
 
 <div class="wrapper fadeInDown">
-  <div id="formContent">
+  <div id="formContent" [ngClass]="setClasses()">
 
     <!-- Icon -->
     <div class="fadeIn first">
@@ -10,10 +10,11 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" name="login" placeholder="Username">
-      <input type="text" id="password"  name="login" placeholder="Password">
+    <form (ngSubmit)="onLogin()">
+      <input type="text" id="login" name="login" [(ngModel)]="username" placeholder="Username">
+      <input type="password" id="password"  name="login" [(ngModel)]="password" placeholder="Password">
       <input type="submit" value="Log In">
+      <p class="error" [style.visibility]="(!error) ? 'hidden':'visible'">Error in login.</p>
     </form>
 
     <!-- Remind Passowrd -->
