@@ -14,6 +14,7 @@ import { TransactionHistoryComponent } from './account-details/transaction-histo
 import { HolderInformationComponent } from './account-details/holder-information/holder-information.component';
 import { BalanceInformationComponent } from './account-details/balance-information/balance-information.component';
 import { InvTransactionHistoryComponent } from './investements/inv-transaction-history/inv-transaction-history.component';
+import { AccountSummaryComponent } from './account-summary/account-summary.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InvTransactionHistoryComponent } from './investements/inv-transaction-h
     TransactionHistoryComponent,
     HolderInformationComponent,
     BalanceInformationComponent,
-    InvTransactionHistoryComponent
+    InvTransactionHistoryComponent,
+    AccountSummaryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

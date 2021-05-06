@@ -24,6 +24,9 @@
 <button (click)="this.isButtonVisible = true;">Get Account Details</button>
 <div *ngIf="this.isButtonVisible">
   <!-- <app-account-details></app-account-details> -->
+  <app-account-summary></app-account-summary>
+
+  
   <app-holder-information></app-holder-information>
   <app-balance-information></app-balance-information>
   <app-transaction-history></app-transaction-history>
