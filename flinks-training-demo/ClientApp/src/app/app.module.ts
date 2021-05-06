@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { TransactionHistoryComponent } from './account-details/transaction-history/transaction-history.component';
+import { HolderInformationComponent } from './account-details/holder-information/holder-information.component';
+import { BalanceInformationComponent } from './account-details/balance-information/balance-information.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    TransactionHistoryComponent,
+    HolderInformationComponent,
+    BalanceInformationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
