@@ -8,17 +8,17 @@ import { HttpClient} from '@angular/common/http';
 })
 export class FetchSummaryComponent{
 
-  public accountSummary: AccountSummary;
+  public accountSummary: Array<AccountSummary>;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
     console.log("Account Summary started");
-    http.get<AccountSummary>(baseUrl + 'customer/getaccountsummary').subscribe(result => {
+    http.get<Array<AccountSummary>>(baseUrl + 'customer/getaccountsummary').subscribe(result => {
         this.accountSummary = result;
-        if (this.accountSummary.transitNumber == null)
+        if (this.accountSummary[0].title == null)
           console.log("It failed :(")
         else
-          console.log("this is transit number " + this.accountSummary.transitNumber);
+          console.log("this is title" + this.accountSummary[0].title);
     }, error => console.error(error));
 
   }
@@ -26,17 +26,20 @@ export class FetchSummaryComponent{
 
 
 interface AccountSummary{
-  transitNumber: number;
-  institutionNumber: number;
-  overdraftLimit: number;
   title: string;
   accountNumber: string;
   availableBalance: number;
   currentBalance: number;
   limitBalance: number;
   category: string;
-  type: string;
   currency: string;
-  holder: string;
-  loginId: string;
+  name: string;
+  civicAddress: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  Country: string;
+  phoneNumber: string,
+  email: string,
+  id: string;
 }

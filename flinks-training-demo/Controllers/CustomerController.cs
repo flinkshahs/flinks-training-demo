@@ -33,7 +33,7 @@ namespace flinks_training_demo.Controllers
 
     private MessageMFA m;
 
-    private AccountSummary accountSummary;
+    private List<AccountSummary> accountSummary;
 
     private FlinksClient apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
 
@@ -65,7 +65,7 @@ namespace flinks_training_demo.Controllers
       if (flag)
       {
         c.username = credentials[0];
-        c.requestId = response.RequestId.Value;
+        c.requestId = (Guid)response.RequestId;
         Console.WriteLine(c.requestId.ToString());
         c.securityChallenge = securityChallenge;
         c.securityChallenges = response.SecurityChallenges;
@@ -80,7 +80,7 @@ namespace flinks_training_demo.Controllers
     }
 
     [HttpPost, ActionName("Answer")]
-    public MessageMFA PostAnswerMFA([FromForm] String answer)
+    public MessageMFA PostAnswerMFA([FromBody] List<string> answer)
     {
       m = new MessageMFA();
       c = JsonConvert.DeserializeObject<Customer>((string)TempData["Customer"]);
@@ -91,11 +91,11 @@ namespace flinks_training_demo.Controllers
       foreach (var securityChallenge in c.securityChallenges)
       {
         Console.WriteLine(securityChallenge.Prompt);
-        securityChallenge.Answer = answer;
+        securityChallenge.Answer = answer[0];
       }
 
       apiClient.ClientStatus = ClientStatus.PENDING_MFA_ANSWERS;
-      Console.WriteLine(c.requestId.ToString(), c.securityChallenges);
+      Console.WriteLine(c.requestId.ToString());
       var response = apiClient.AnswerMfaQuestionsAndAuthorize(c.requestId, c.securityChallenges);
 
       TempData["Customer"] = JsonConvert.SerializeObject(c);
@@ -104,19 +104,48 @@ namespace flinks_training_demo.Controllers
     }
 
     [HttpGet, ActionName("GetAccountSummary")]
-    public AccountSummary GetAccountSummary()
+    public List<AccountSummary> GetAccountSummary()
     {
-      accountSummary = new AccountSummary();
+      ;
       c = JsonConvert.DeserializeObject<Customer>((string)TempData["Customer"]);
 
       Console.WriteLine("Yay it's being called for Summary.");
 
-      var response = apiClient.GetAccountSummary(c.requestId);
+      apiClient.ClientStatus = ClientStatus.AUTHORIZED;
+      Console.WriteLine(c.requestId);
+      AccountsSummaryResult response = apiClient.GetAccountSummary(c.requestId);
 
-      // accountSummary.transitNumber = response.
+      List<Account> accounts = response.Accounts;
 
-      m.message = response.Message;
-      return m;
+      accountSummary = new List<AccountSummary>();
+
+
+      // Console.WriteLine(response.Accounts.First().Title);
+
+      foreach (var account in accounts)
+      {
+        AccountSummary a = new AccountSummary();
+        Console.WriteLine("This is account title" + account.Title);
+        a.title = account.Title;
+        a.accountNumber = account.AccountNumber;
+        a.availableBalance = account.Balance.Available;
+        a.currentBalance = account.Balance.Current;
+        a.limitBalance = account.Balance.Limit;
+        a.category = account.Category;
+        a.currency = account.Currency;
+        a.name = account.Holder.Name;
+        a.civicAddress = account.Holder.Address.CivicAddress;
+        a.city = account.Holder.Address.City;
+        a.province = account.Holder.Address.Province;
+        a.postalCode = account.Holder.Address.PostalCode;
+        a.Country = (string)account.Holder.Address.Country;
+        a.email = account.Holder.Email;
+        a.phoneNumber = account.Holder.PhoneNumber;
+        a.id = account.Id.ToString();
+        accountSummary.Add(a);
+      }
+
+      return accountSummary;
     }
 
   }

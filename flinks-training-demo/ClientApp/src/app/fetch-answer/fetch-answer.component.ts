@@ -14,7 +14,7 @@ export class FetchAnswerComponent {
       
     console.log("Woohoo");
     console.log("MFA started");
-    var answer = "Montreal";
+    var answer = ["Montreal"];
     http.post<MessageMFA>(baseUrl + 'customer/answer', answer).subscribe(result => {
         this.messageMFA = result;
         if (this.messageMFA.message == null)
