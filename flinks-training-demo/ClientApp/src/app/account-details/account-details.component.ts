@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Transaction } from "../models/Transaction";
-import { Holder } from "../models/Holder"
+import { Holder } from "../models/Holder";
+import { Account } from "../models/Account";
 import { AccountDetailsService } from "../services/account-details.service";
 
 @Component({
@@ -8,56 +9,51 @@ import { AccountDetailsService } from "../services/account-details.service";
   templateUrl: "./account-details.component.html",
   styleUrls: ["./account-details.component.css"],
 })
-
-
 export class AccountDetailsComponent implements OnInit {
-  static income = 0.0;
-  static expense = 0.0;
-
+  account: Account;
   transactions: Transaction[];
   holder: Holder;
 
-  constructor(private transaction_data: AccountDetailsService) {}
+  constructor(private accountDetails: AccountDetailsService) {}
 
   ngOnInit() {
-    this.transactions = this.transaction_data.getTransactions();
-     this.holder = {
-      Name: "John Doe",
-      Address: {
-        CivicAddress: "1275 avenue des Canadiens-de-Montréal",
-        City: "Montréal",
-        Province: "QC",
-        PostalCode: "H3B 5E8",
-        POBox: null,
-        Country: "CA",
-      },
-      Email: "johndoe@flinks.com",
-      PhoneNumber: "(514) 333-7777",
-    };
+    this.account = this.accountDetails.getAccountInformation();
+    this.transactions = this.account.Transactions;
+    this.holder = this.account.Holder;
   }
 
-  getIncome(){
-    return AccountDetailsComponent.income;
+  getIncome() {
+    let sum = 0;
+    this.transactions.forEach((t) => {
+      if (t.Credit != null) {
+        sum += t.Credit;
+      }
+    });
+    return sum;
   }
 
-  getExpense(){
-    return AccountDetailsComponent.expense;
+  getExpense() {
+    let sum = 0;
+    this.transactions.forEach((t) => {
+      if (t.Debit != null) {
+        sum += t.Debit;
+      }
+    });
+    return sum;
   }
 
-  getTransactionArrow(transaction:Transaction){
-    if (transaction.Debit == null){
-      return "fa-long-arrow-down"
+  getTransactionArrow(transaction: Transaction) {
+    if (transaction.Debit == null) {
+      return "fa-long-arrow-down";
     } else {
-      return "fa-long-arrow-up"
+      return "fa-long-arrow-up";
     }
   }
-  getAmount(transaction : Transaction) {
-    if (transaction.Debit == null){
-      AccountDetailsComponent.income += transaction.Credit;
-      return transaction.Credit
+  getAmount(transaction: Transaction) {
+    if (transaction.Debit == null) {
+      return transaction.Credit;
     } else {
-      AccountDetailsComponent.expense += transaction.Debit;
-      return -transaction.Debit
+      return -transaction.Debit;
     }
   }
 }

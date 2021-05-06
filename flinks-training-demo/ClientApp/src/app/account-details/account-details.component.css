@@ -41,6 +41,8 @@ body {
 }
 
 .nav-item .nav-link .fa-bell-o,
+.fa-money,
+.fa-home,
 .fa-long-arrow-down,
 .fa-long-arrow-up {
     padding: 10px 10px;
@@ -100,6 +102,7 @@ body {
     font-family: 'Lato', sans-serif
 }
 
+.fa-home,
 .fa-long-arrow-down,
 .fa-long-arrow-up {
     padding-left: 12px;
@@ -191,6 +194,8 @@ tbody tr td.text-muted {
     font-family: 'Lato', sans-serif
 }
 
+tbody tr td .fa-money,
+tbody tr td .fa-home,
 tbody tr td .fa-long-arrow-up,
 tbody tr td .fa-long-arrow-down {
     font-size: 12px;

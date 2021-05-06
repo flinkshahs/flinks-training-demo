@@ -1,15 +1,55 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AccountDetailsService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
+  getAccountInformation() {
+    return {
+      Transactions: this.getTransactions(),
+      TransitNumber: "77777",
+      InstitutionNumber: "777",
+      OverdraftLimit: 0,
+      Title: "Chequing CAD",
+      AccountNumber: "1111000",
+      Balance: {
+        Available: null,
+        Current: 49993.96,
+        Limit: null,
+      },
+      Category: "Operations",
+      Type: "Chequing",
+      Currency: "CAD",
+      Holder: this.getHolderInformation(),
+      Id: "ae1dac72-70da-4626-fed8-08d682e1ff4a",
+    };
+  }
+  getHolderInformation() {
+    return {
+      Name: "John Doe",
+      Address: {
+        CivicAddress: "1275 avenue des Canadiens-de-Montréal",
+        City: "Montréal",
+        Province: "QC",
+        PostalCode: "H3B 5E8",
+        POBox: null,
+        Country: "CA",
+      },
+      Email: "johndoe@flinks.com",
+      PhoneNumber: "(514) 333-7777",
 
-  getTransactions(){
+      Balance: {
+        Available: null,
+        Current: 49993.96,
+        Limit: null,
+      },
+    };
+  }
+  getTransactions() {
     //
     //This will be replaced by backend POST request response:
     return [
@@ -41,6 +81,5 @@ export class AccountDetailsService {
         Id: "1adfde25-832f-4acb-a683-4163bcb4182a",
       },
     ];
-
   }
 }
