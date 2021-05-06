@@ -33,7 +33,9 @@ namespace flinks_training_demo.Controllers
 
     private MessageMFA m;
 
-    private FlinksClient apiClient;
+    private AccountSummary accountSummary;
+
+    private FlinksClient apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
 
     public CustomerController(ILogger<CustomerController> logger)
     {
@@ -45,11 +47,7 @@ namespace flinks_training_demo.Controllers
     {
       c = new Customer();
       Console.WriteLine("Yay it's being called.");
-      Console.WriteLine(apiClient.ClientStatus);
-      FlinksClient apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
       var response = apiClient.Authorize("FlinksCapital", credentials[0], credentials[1], true, false, true, RequestLanguage.en, true);
-      Console.WriteLine(apiClient.ClientStatus);
-
 
       bool flag = true;
       string securityChallenge = null;
@@ -68,6 +66,7 @@ namespace flinks_training_demo.Controllers
       {
         c.username = credentials[0];
         c.requestId = response.RequestId.Value;
+        Console.WriteLine(c.requestId.ToString());
         c.securityChallenge = securityChallenge;
         c.securityChallenges = response.SecurityChallenges;
         c.answer = null;
@@ -85,12 +84,9 @@ namespace flinks_training_demo.Controllers
     {
       m = new MessageMFA();
       c = JsonConvert.DeserializeObject<Customer>((string)TempData["Customer"]);
+      // apiClient = JsonConvert.DeserializeObject<FlinksClient>((string)TempData["Client"]);
+
       Console.WriteLine("Yay it's being called for ANSWER.");
-
-      if (c == null)
-        Console.WriteLine("Its null");
-
-      Console.WriteLine("This is username" + c.username);
 
       foreach (var securityChallenge in c.securityChallenges)
       {
@@ -98,9 +94,26 @@ namespace flinks_training_demo.Controllers
         securityChallenge.Answer = answer;
       }
 
-      Console.WriteLine(apiClient.ClientStatus);
+      apiClient.ClientStatus = ClientStatus.PENDING_MFA_ANSWERS;
       Console.WriteLine(c.requestId.ToString(), c.securityChallenges);
       var response = apiClient.AnswerMfaQuestionsAndAuthorize(c.requestId, c.securityChallenges);
+
+      TempData["Customer"] = JsonConvert.SerializeObject(c);
+      m.message = response.Message;
+      return m;
+    }
+
+    [HttpGet, ActionName("GetAccountSummary")]
+    public AccountSummary GetAccountSummary()
+    {
+      accountSummary = new AccountSummary();
+      c = JsonConvert.DeserializeObject<Customer>((string)TempData["Customer"]);
+
+      Console.WriteLine("Yay it's being called for Summary.");
+
+      var response = apiClient.GetAccountSummary(c.requestId);
+
+      // accountSummary.transitNumber = response.
 
       m.message = response.Message;
       return m;
