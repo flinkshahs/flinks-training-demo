@@ -1,0 +1,27 @@
+<h1>Account Summary</h1>
+
+<div *ngIf = "selectedAccount">
+<p>{{selectedAccount.title}} Account - {{selectedAccount.accountNumber}}</p>
+<!--outputting account information and checking if some values are null if a login id exists-->
+<ul>
+  <li *ngIf = "selectedAccount.holder">Account Holder: {{selectedAccount.holder}}</li>
+  <li *ngIf = "selectedAccount.transitNumber">Transit #: {{selectedAccount.transitNumber}} </li>
+  <li *ngIf = "selectedAccount.institutionNumber">Institution #: {{selectedAccount.institutionNumber}}</li>
+  <li *ngIf = "selectedAccount.overdraftLimit">Overdraft Limit: {{selectedAccount.overdraftLimit}}</li>
+  <li>Account Type: {{selectedAccount.type}}</li>
+  <li>Currency: {{selectedAccount.currency}}</li>
+</ul>
+<p>Balances</p>
+<ul>
+  <li *ngIf = "selectedAccount.availableBalance">Available Balance: ${{selectedAccount.availableBalance}}</li>
+  <li *ngIf = "selectedAccount.currentBalance"> Current Balance: ${{selectedAccount.currentBalance}}</li>
+  <li *ngIf = "selectedAccount.limitBalance">Limit Balance: ${{selectedAccount.limitBalance}}</li>
+</ul>
+</div>
+
+<!--if no log in id output message-->
+<div *ngIf = "!selectedAccount">You have not yet logged in successfully.</div>
+
+<!--button to test functionality if successful log in-->
+<button (click) = changeInfo()>Successful Log In Simulation</button>
+
