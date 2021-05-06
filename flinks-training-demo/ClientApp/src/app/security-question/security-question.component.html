@@ -1,0 +1,21 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../assets/images/flinks-logo.png"  id="icon" alt="Icon" />
+      </div>
+  
+      <!-- Temporary hardcoded, will pass in Security prompt -->
+      <div>
+          <h3>Security Question:</h3>
+          <p>{{ authResponse.SecurityChallenges[0].Prompt }}</p>
+      </div>
+
+      <!-- Security Question Form -->
+      <form (ngSubmit)="onSubmit()">
+          <input type="text" name="answer" [(ngModel)]="answer" placeholder="Type answer here...">
+          <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
