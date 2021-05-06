@@ -39,7 +39,7 @@ namespace flinks_training_demo
 
 
             //need to use input from user
-           // String answer = "";
+           String answer = "";
             
            //answer = (string) Console.ReadLine();
 
