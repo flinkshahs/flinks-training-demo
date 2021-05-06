@@ -10,18 +10,20 @@ export class FetchDataComponent {
   public user: Customer;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    var credentials = ["Great4545345day", "Ever34545yday"]
 
-    http.post<Customer>(baseUrl + 'customer', credentials).subscribe(result => {
+    var credentials = ["Greatday", "Everyday"]
+    
+    console.log("Login started");
+    http.post<Customer>(baseUrl + 'customer/login', credentials).subscribe(result => {
         this.user = result;
         if (this.user.username == null)
           console.log("Wrong credentials")
-        console.log("this is users " + result);
-    }, error => console.error(error));
- 
-
+        console.log("this is users " + this.user.username);
+    }, error => console.error(error))
+  
   }
 }
+
 
 interface Customer {
   username: string;

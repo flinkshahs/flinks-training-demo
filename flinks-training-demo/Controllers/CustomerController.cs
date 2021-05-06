@@ -23,7 +23,7 @@ using Flinks.CSharp.SDK.Model.Shared;
 namespace flinks_training_demo.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("[controller]/[action]")]
   public class CustomerController : ControllerBase
   {
     private readonly ILogger<CustomerController> _logger;
@@ -31,16 +31,19 @@ namespace flinks_training_demo.Controllers
 
     private Customer c = new Customer();
 
+    private MessageMFA m = new MessageMFA();
+
+    private FlinksClient apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
+
     public CustomerController(ILogger<CustomerController> logger)
     {
       _logger = logger;
     }
 
-    [HttpPost]
-    public Customer Post([FromBody] List<string> credentials)
+    [HttpPost, ActionName("Login")]
+    public Customer PostCredentials([FromBody] List<string> credentials)
     {
       Console.WriteLine("Yay it's being called.");
-      var apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
       var response = apiClient.Authorize("FlinksCapital", credentials[0], credentials[1], true, false, true, RequestLanguage.en, true);
 
       bool flag = true;
@@ -59,7 +62,8 @@ namespace flinks_training_demo.Controllers
       if (flag)
       {
         c.username = credentials[0];
-        c.requestId = response.RequestId;
+        Console.WriteLine("This is username" + c.username);
+        c.requestId = response.RequestId.Value;
         c.securityChallenge = securityChallenge;
         c.securityChallenges = response.SecurityChallenges;
         c.answer = null;
@@ -71,14 +75,24 @@ namespace flinks_training_demo.Controllers
       }
     }
 
-    [HttpPost]
-    public string Post([FromBody] String answer)
+    [HttpPost, ActionName("Answer")]
+    public MessageMFA PostAnswerMFA([FromForm] String answer)
     {
       Console.WriteLine("Yay it's being called for ANSWER.");
-      var apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
+
+      Console.WriteLine("This is username" + c.username);
+
+      foreach (var securityChallenge in c.securityChallenges)
+      {
+        Console.WriteLine(securityChallenge.Prompt);
+        securityChallenge.Answer = answer;
+      }
+
+
       var response = apiClient.AnswerMfaQuestionsAndAuthorize(c.requestId, c.securityChallenges);
 
-      return response.Message;
+      m.message = response.Message;
+      return m;
     }
 
   }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Flinks.CSharp.SDK;
 using Flinks.CSharp.SDK.Model.Attributes;
 using Flinks.CSharp.SDK.Model.Authorize;
@@ -17,7 +18,7 @@ namespace flinks_training_demo
   {
     public string username { get; set; }
 
-    public string requestId { get; set; }
+    public Guid requestId { get; set; }
 
     public string securityChallenge { get; set; }
 
