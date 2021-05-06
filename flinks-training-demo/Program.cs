@@ -39,20 +39,28 @@ namespace flinks_training_demo
 
 
             //need to use input from user
-           // String answer = "";
+           String answer = "";
             
-           //answer = (string) Console.ReadLine();
+           answer = (string) Console.ReadLine();
 
-           sc.Answer = "Triangle";
+           sc.Answer = answer;
             
-            //Console.WriteLine("You answered = '{0}' ",  answer);
+            Console.WriteLine("You answered = '{0}' ",  answer);
 
             var resp2 = apiClient.AnswerMfaQuestionsAndAuthorize((System.Guid) response.RequestId,response.SecurityChallenges);
 
             
-            Console.WriteLine(resp2);
+            Console.WriteLine(resp2.HttpStatusCode);
 
-           // CreateHostBuilder(args).Build().Run();
+            var resp3 = apiClient.GetAccountSummary((System.Guid) response.RequestId);
+
+            Console.WriteLine(resp3.Accounts);
+
+            var resp4 = apiClient.GetAccountDetails((System.Guid) response.RequestId, true, true, true, true, DaysOfTransaction.Days90);
+
+            Console.WriteLine(resp4.Accounts);
+
+           CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
