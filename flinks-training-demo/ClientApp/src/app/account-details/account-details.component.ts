@@ -9,7 +9,11 @@ import { AccountDetailsService } from "../services/account-details.service";
   styleUrls: ["./account-details.component.css"],
 })
 
+
 export class AccountDetailsComponent implements OnInit {
+  static income = 0.0;
+  static expense = 0.0;
+
   transactions: Transaction[];
   holder: Holder;
 
@@ -30,5 +34,30 @@ export class AccountDetailsComponent implements OnInit {
       Email: "johndoe@flinks.com",
       PhoneNumber: "(514) 333-7777",
     };
+  }
+
+  getIncome(){
+    return AccountDetailsComponent.income;
+  }
+
+  getExpense(){
+    return AccountDetailsComponent.expense;
+  }
+
+  getTransactionArrow(transaction:Transaction){
+    if (transaction.Debit == null){
+      return "fa-long-arrow-down"
+    } else {
+      return "fa-long-arrow-up"
+    }
+  }
+  getAmount(transaction : Transaction) {
+    if (transaction.Debit == null){
+      AccountDetailsComponent.income += transaction.Credit;
+      return transaction.Credit
+    } else {
+      AccountDetailsComponent.expense += transaction.Debit;
+      return -transaction.Debit
+    }
   }
 }

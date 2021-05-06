@@ -37,7 +37,7 @@ export class HomeComponent {
     
   }
 
-  isButtonVisible = false;
+  isButtonVisible = true;
 
 
 }
