@@ -1,1 +1,13 @@
-<p>fetch-detail works!</p>
+<!-- <app-holder-information></app-holder-information>
+<app-balance-information></app-balance-information>
+<app-transaction-history></app-transaction-history>
+<app-inv-transaction-history></app-inv-transaction-history> -->
+Hello world!
+<div *ngFor="let account of accountDetails">
+    <app-holder-information [account]="account"></app-holder-information>
+    <app-balance-information [account]="account"></app-balance-information>
+    <app-transaction-history [account]="account"></app-transaction-history>
+    <app-inv-transaction-history></app-inv-transaction-history>
+
+
+</div>

@@ -1,8 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Transaction } from "../../models/Transaction";
 import { Holder } from "../../models/Holder";
 import { Account } from "../../models/Account";
 import { AccountDetailsService } from "../../services/account-details.service";
+import { FetchDetailComponent } from "../../fetch-detail/fetch-detail.component";
+import { AccountDetails} from "../../models/AccountDetails";
+// import { HeapProfiler } from "inspector";
 
 @Component({
   selector: "app-balance-information",
@@ -10,50 +13,18 @@ import { AccountDetailsService } from "../../services/account-details.service";
   styleUrls: ["./balance-information.component.css"],
 })
 export class BalanceInformationComponent implements OnInit {
-  account: Account;
-  transactions: Transaction[];
-  holder: Holder;
+  @Input() account?: AccountDetails;
+  // account: Account;
+  // transactions: Transaction[];
+  // holder: Holder;
+  // balance: number;
 
-  constructor(private accountDetails: AccountDetailsService) {}
+  constructor(private accountDetails: AccountDetailsService, private fetchDetailComponent: FetchDetailComponent) {}
 
   ngOnInit() {
-    this.account = this.accountDetails.getAccountInformation();
-    this.transactions = this.account.Transactions;
-    this.holder = this.account.Holder;
-  }
-
-  getIncome() {
-    let sum = 0;
-    this.transactions.forEach((t) => {
-      if (t.Credit != null) {
-        sum += t.Credit;
-      }
-    });
-    return sum;
-  }
-
-  getExpense() {
-    let sum = 0;
-    this.transactions.forEach((t) => {
-      if (t.Debit != null) {
-        sum += t.Debit;
-      }
-    });
-    return sum;
-  }
-
-  getTransactionArrow(transaction: Transaction) {
-    if (transaction.Debit == null) {
-      return "fa-long-arrow-down";
-    } else {
-      return "fa-long-arrow-up";
-    }
-  }
-  getAmount(transaction: Transaction) {
-    if (transaction.Debit == null) {
-      return transaction.Credit;
-    } else {
-      return -transaction.Debit;
-    }
+    // this.balance = this.fetchDetailComponent.x;
+    // this.account = this.accountDetails.getAccountInformation();
+    // this.transactions = this.account.Transactions;
+    // this.holder = this.account.Holder;
   }
 }

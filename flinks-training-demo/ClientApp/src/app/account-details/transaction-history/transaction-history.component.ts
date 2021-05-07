@@ -1,31 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Transaction } from "../../models/Transaction";
 import { Holder } from "../../models/Holder";
 import { Account } from "../../models/Account";
 import { AccountDetailsService } from "../../services/account-details.service";
+import { AccountDetails} from "../../models/AccountDetails";
+
 @Component({
   selector: 'app-transaction-history',
   templateUrl: './transaction-history.component.html',
   styleUrls: ['./transaction-history.component.css']
 })
 export class TransactionHistoryComponent implements OnInit {
-  account: Account;
+  @Input() account?: AccountDetails;
+  // account: Account;
   transactions: Transaction[];
-  holder: Holder;
+  // holder: Holder;
 
   constructor(private accountDetails: AccountDetailsService) { }
 
   ngOnInit() {
-    this.account = this.accountDetails.getAccountInformation();
-    this.transactions = this.account.Transactions;
-    this.holder = this.account.Holder;
+    // this.account = this.accountDetails.getAccountInformation();
+    this.transactions = this.account.transactions;
+    // this.holder = this.account.Holder;
   }
 
   getIncome() {
     let sum = 0;
     this.transactions.forEach((t) => {
-      if (t.Credit != null) {
-        sum += t.Credit;
+      if (t.credit != null) {
+        sum += t.credit;
       }
     });
     return sum;
@@ -34,25 +37,25 @@ export class TransactionHistoryComponent implements OnInit {
   getExpense() {
     let sum = 0;
     this.transactions.forEach((t) => {
-      if (t.Debit != null) {
-        sum += t.Debit;
+      if (t.debit != null) {
+        sum += t.debit;
       }
     });
     return sum;
   }
 
   getTransactionArrow(transaction: Transaction) {
-    if (transaction.Debit == null) {
+    if (transaction.debit == null) {
       return "fa-long-arrow-down";
     } else {
       return "fa-long-arrow-up";
     }
   }
   getAmount(transaction: Transaction) {
-    if (transaction.Debit == null) {
-      return transaction.Credit;
+    if (transaction.debit == null) {
+      return transaction.credit;
     } else {
-      return -transaction.Debit;
+      return -transaction.debit;
     }
   }
 
