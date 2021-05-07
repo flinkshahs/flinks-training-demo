@@ -1,0 +1,26 @@
+<!-- Taken from https://bootsnipp.com/snippets/dldxB -->
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent" [ngClass]="setClasses()">
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="../../assets/images/flinks-logo.png"  id="icon" alt="Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form (ngSubmit)="onLogin()">
+      <input type="text" id="login" name="login" [(ngModel)]="username" placeholder="Username">
+      <input type="password" id="password"  name="login" [(ngModel)]="password" placeholder="Password">
+      <input type="submit" value="Log In">
+      <p class="error" [style.visibility]="(!error) ? 'hidden':'visible'">Error in login.</p>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="/error">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
