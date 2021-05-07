@@ -1,9 +1,9 @@
 export class Transaction {
-    Date: string;
-    Code?: any;
-    Description: string;
-    Debit?: number;
-    Credit?: number;
-    Balance: number;
-    Id: string;
+    date: string;
+    description: string;
+    credit: number;
+    debit: number;
+    code: string;
+    balance: number;
+    id: string;
 }

@@ -2,7 +2,7 @@
 <div class="wrapper rounded">
     <!-- Transaction information -->
     <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
-        <a class="navbar-brand" href="#">Transactions <p class="text-muted pl-1">Hi {{holder.Name}}! We carefully retrieved your latest
+        <a class="navbar-brand" href="#">Transactions <p class="text-muted pl-1">Hi {{account.name}}! We carefully retrieved your latest
                 transactions:</p> </a> <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span> </button>
@@ -39,8 +39,8 @@
             </thead>
             <tbody *ngFor="let transaction of transactions; index as i">
                 <tr>
-                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> {{transaction.Description}} </td>
-                    <td class="text-muted">{{transaction.Date}}</td>
+                    <td scope="row"> <span class="fa fa-exchange mr-1"></span> {{transaction.description}} </td>
+                    <td class="text-muted">{{transaction.date}}</td>
                     <td class="d-flex justify-content-end align-items-center"> <span
                             class="fa {{getTransactionArrow(transaction)}} mr-1"></span> {{getAmount(transaction)}}
                     </td>
@@ -49,7 +49,7 @@
         </table>
     </div>
     <div class="d-flex justify-content-between align-items-center results"> <span class="pl-md-3">Showing<b
-                class="text-white"> 1-{{transactions.length}} 0f {{transactions.length}} </b> trasactions</span>
+                class="text-white"> 1-{{transactions.length}} 0f {{transactions.length}} </b> transactions</span>
         <div class="pt-3">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
