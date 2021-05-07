@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Customer } from '../interfaces/Customer';
+
 
 
 @Component({
@@ -21,12 +23,4 @@ export class FetchDataComponent {
     }, error => console.error(error))
   
   }
-}
-
-
-interface Customer {
-  username: string;
-  requestId: string;
-  securityChallenge: string;
-  answer: string;
 }
