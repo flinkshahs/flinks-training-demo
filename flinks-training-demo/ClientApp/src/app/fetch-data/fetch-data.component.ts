@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Customer } from '../interfaces/Customer';
+
 
 
 @Component({
@@ -13,7 +15,6 @@ export class FetchDataComponent {
 
     var credentials = ["Greatday", "Everyday"]
     
-    console.log("Login started");
     http.post<Customer>(baseUrl + 'customer/login', credentials).subscribe(result => {
         this.user = result;
         if (this.user.username == null)
@@ -22,12 +23,4 @@ export class FetchDataComponent {
     }, error => console.error(error))
   
   }
-}
-
-
-interface Customer {
-  username: string;
-  requestId: string;
-  securityChallenge: string;
-  answer: string;
 }

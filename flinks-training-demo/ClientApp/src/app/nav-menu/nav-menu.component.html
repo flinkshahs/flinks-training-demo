@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">Flinks training demo</a>
+      <a class="navbar-brand" [routerLink]="['/']">Flinks Capital</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -28,14 +28,10 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
+            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Fetch Data</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+            <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
           </li>
           <!--Added a button for security question on Nav bar-->
           <li class="nav-item" [routerLinkActive]="['link-active']">
@@ -46,6 +42,9 @@
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/fetch-summary']">Fetch Summary</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/fetch-detail']">Fetch Detail</a>
           </li>
         </ul>
       </div>

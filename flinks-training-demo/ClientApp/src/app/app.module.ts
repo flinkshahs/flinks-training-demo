@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { SecurityQuestionComponent } from './security-question/security-question.component';
+import { LoginComponent } from './login/login.component';
 import { FetchAnswerComponent } from './fetch-answer/fetch-answer.component';
 import { FetchSummaryComponent } from './fetch-summary/fetch-summary.component';
 import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
@@ -22,6 +23,7 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
     CounterComponent,
     FetchDataComponent,
     SecurityQuestionComponent,
+    LoginComponent,
     FetchAnswerComponent,
     FetchSummaryComponent,
     FetchDetailComponent
@@ -35,8 +37,10 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'security-question', component: SecurityQuestionComponent },
+      { path: 'login', component: LoginComponent},
       { path: 'fetch-answer', component: FetchAnswerComponent },
       { path: 'fetch-summary', component: FetchSummaryComponent },
+      { path: 'fetch-detail', component: FetchDetailComponent },
     ])
   ],
   providers: [],

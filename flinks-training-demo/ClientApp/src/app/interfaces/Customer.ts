@@ -1,6 +1,7 @@
+
 export interface Customer {
-    username: string;
-    requestId: string;
-    securityChallenge: string;
-    answer: string;
-  }
+  username: string;
+  requestId: string;
+  securityChallenge: string;
+  answer: string;
+}
