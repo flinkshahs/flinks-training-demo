@@ -1,9 +1,0 @@
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/bin/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.deps.json
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/bin/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.dll
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/bin/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.pdb
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/obj/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.csprojAssemblyReference.cache
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/obj/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.AssemblyInfoInputs.cache
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/obj/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.AssemblyInfo.cs
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/obj/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.csproj.CoreCompileInputs.cache
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/obj/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.dll
-/Users/sehrmoosabhoy/flinks-training-demo/sdk-csharp-master/Source/Flinks.CSharp.SDK.Model/obj/Debug/netstandard2.0/Flinks.CSharp.SDK.Model.pdb
