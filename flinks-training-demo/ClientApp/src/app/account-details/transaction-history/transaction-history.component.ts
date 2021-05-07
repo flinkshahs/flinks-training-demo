@@ -3,6 +3,8 @@ import { Transaction } from "../../models/Transaction";
 import { Holder } from "../../models/Holder";
 import { Account } from "../../models/Account";
 import { AccountDetailsService } from "../../services/account-details.service";
+import { AccountDetails} from "../../models/AccountDetails";
+
 @Component({
   selector: 'app-transaction-history',
   templateUrl: './transaction-history.component.html',

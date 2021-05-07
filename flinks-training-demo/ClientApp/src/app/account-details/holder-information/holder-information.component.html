@@ -1,7 +1,7 @@
 <div class="wrapper rounded">
     <!-- Holder information -->
     <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
-        <a class="navbar-brand" href="#">Holder's Information<p class="text-muted pl-1">Good morning {{holder.Name}},
+        <a class="navbar-brand" href="#">Holder's Information<p class="text-muted pl-1">Good morning {{account.name}},
                 here is a summary of your personal information</p> </a>
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> -->
     </nav>
@@ -26,10 +26,10 @@
             <tbody>
                 <tr>
                     <td scope="row"> <span class="fa fa-home mr-0"></span> &nbsp; {{holder.Address.CivicAddress}} </td>
-                    <td class="text-muted">{{holder.Address.City}}</td>
-                    <td class="text-muted text-center">{{holder.Address.Province}}</td>
-                    <td class="text-muted text-center">{{holder.Address.PostalCode}}</td>
-                    <td class="text-muted text-center">{{holder.Address.Country}}</td>
+                    <td class="text-muted">{{account.city}}</td>
+                    <td class="text-muted text-center">{{account.province}}</td>
+                    <td class="text-muted text-center">{{account.postalCode}}</td>
+                    <td class="text-muted text-center">{{account.Country}}</td>
                 </tr>
             </tbody>
         </table>
@@ -52,9 +52,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td scope="row"> <span class="fa fa-user mr-0"></span> &nbsp; {{holder.Name}} </td>
-                    <td class="text-muted">{{holder.Email}}</td>
-                    <td class="text-muted">{{holder.PhoneNumber}}</td>
+                    <td scope="row"> <span class="fa fa-user mr-0"></span> &nbsp; {{account.name}} </td>
+                    <td class="text-muted">{{account.email}</td>
+                    <td class="text-muted">{{account.phoneNumber}}</td>
                 </tr>
             </tbody>
         </table>
@@ -71,8 +71,8 @@
     <div>
         <div class="d-flex justify-content-start align-items-center">
             <p class="text-white ml-4 fa fa-money"></p>
-            <p class="text mx-3">Your current balance on your <strong>{{account.Type}} </strong>account is: </p>
-            <p class="text-white ml-4 money">${{holder.Balance.Current}}</p>
+            <p class="text mx-3">Your current balance on your <strong> </strong>account is: </p>
+            <p class="text-white ml-4 money">${{account.currentBalance}}</p>
         </div>
     </div> -->
 
