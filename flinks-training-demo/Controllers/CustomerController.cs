@@ -35,6 +35,7 @@ namespace flinks_training_demo.Controllers
 
     private List<AccountSummary> accountSummary;
 
+    private List<AccountDetails> accountDetails;
     private FlinksClient apiClient = new FlinksClient("43387ca6-0391-4c82-857d-70d95f087ecb", "https://toolbox-api.private.fin.ag");
 
     public CustomerController(ILogger<CustomerController> logger)
@@ -91,6 +92,7 @@ namespace flinks_training_demo.Controllers
       foreach (var securityChallenge in c.securityChallenges)
       {
         Console.WriteLine(securityChallenge.Prompt);
+        Console.WriteLine(answer[0]);
         securityChallenge.Answer = answer[0];
       }
 
@@ -100,13 +102,13 @@ namespace flinks_training_demo.Controllers
 
       TempData["Customer"] = JsonConvert.SerializeObject(c);
       m.message = response.Message;
+      Console.WriteLine(response.Message);
       return m;
     }
 
     [HttpGet, ActionName("GetAccountSummary")]
     public List<AccountSummary> GetAccountSummary()
     {
-      ;
       c = JsonConvert.DeserializeObject<Customer>((string)TempData["Customer"]);
 
       Console.WriteLine("Yay it's being called for Summary.");
@@ -144,8 +146,68 @@ namespace flinks_training_demo.Controllers
         a.id = account.Id.ToString();
         accountSummary.Add(a);
       }
+      TempData["Customer"] = JsonConvert.SerializeObject(c);
 
       return accountSummary;
+    }
+
+    [HttpGet, ActionName("GetAccountDetail")]
+    public List<AccountDetails> GetAccountDetail()
+    {
+      c = JsonConvert.DeserializeObject<Customer>((string)TempData["Customer"]);
+
+      Console.WriteLine("Yay it's being called for Details.");
+
+      apiClient.ClientStatus = ClientStatus.AUTHORIZED;
+      Console.WriteLine(c.requestId);
+      AccountsDetailResult response = apiClient.GetAccountDetails(c.requestId, true, true, true, true, DaysOfTransaction.Days90);
+
+      List<Account> accounts = response.Accounts;
+
+      accountDetails = new List<AccountDetails>();
+
+
+      // Console.WriteLine(response.Accounts.First().Title);
+
+      foreach (var account in accounts)
+      {
+        AccountDetails a = new AccountDetails();
+        Console.WriteLine("This is account title" + account.Title);
+        a.title = account.Title;
+        a.accountNumber = account.AccountNumber;
+        a.availableBalance = account.Balance.Available;
+        a.currentBalance = account.Balance.Current;
+        a.limitBalance = account.Balance.Limit;
+        a.category = account.Category;
+        a.currency = account.Currency;
+        a.name = account.Holder.Name;
+        a.civicAddress = account.Holder.Address.CivicAddress;
+        a.city = account.Holder.Address.City;
+        a.province = account.Holder.Address.Province;
+        a.postalCode = account.Holder.Address.PostalCode;
+        a.Country = (string)account.Holder.Address.Country;
+        a.email = account.Holder.Email;
+        a.phoneNumber = account.Holder.PhoneNumber;
+        a.id = account.Id.ToString();
+        List<Transaction> lt = new List<Transaction>();
+        foreach (var transaction in account.Transactions)
+        {
+          Transaction t = new Transaction();
+          t.Balance = transaction.Balance;
+          t.Date = transaction.Date.ToString();
+          t.Debit = transaction.Debit;
+          t.Credit = transaction.Credit;
+          t.Description = transaction.Description;
+          t.Code = (string)transaction.Code;
+          t.Id = transaction.Id.ToString();
+          lt.Add(t);
+        }
+        a.transactions = lt;
+        accountDetails.Add(a);
+      }
+      TempData["Customer"] = JsonConvert.SerializeObject(c);
+
+      return accountDetails;
     }
 
   }
