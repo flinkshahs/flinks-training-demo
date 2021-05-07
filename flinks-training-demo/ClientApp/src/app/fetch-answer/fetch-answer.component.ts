@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Console } from 'console';
+
 
 @Component({
   selector: 'app-fetch-answer',
@@ -15,13 +15,15 @@ export class FetchAnswerComponent {
       
     console.log("Woohoo");
     console.log("MFA started");
-    
-    var answer = "Triangle";
+
+    var answer = "Montreal";
+
     http.post<MessageMFA>(baseUrl + 'customer/answer', answer).subscribe(result => {
         this.messageMFA = result;
         if (this.messageMFA.message == null)
-          console.log("Wrong credentials")
-        console.log("this is message " + this.messageMFA.message);
+          console.log("It works!")
+        else
+          console.log("this is message " + this.messageMFA.message);
     }, error => console.error(error));
 
   }

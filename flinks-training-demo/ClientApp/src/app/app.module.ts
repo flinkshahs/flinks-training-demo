@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FetchAnswerComponent } from './fetch-answer/fetch-answer.component';
+import { FetchSummaryComponent } from './fetch-summary/fetch-summary.component';
+import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { FetchAnswerComponent } from './fetch-answer/fetch-answer.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    FetchAnswerComponent
+    FetchAnswerComponent,
+    FetchSummaryComponent,
+    FetchDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,6 +33,7 @@ import { FetchAnswerComponent } from './fetch-answer/fetch-answer.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'fetch-answer', component: FetchAnswerComponent },
+      { path: 'fetch-summary', component: FetchSummaryComponent },
     ])
   ],
   providers: [],
