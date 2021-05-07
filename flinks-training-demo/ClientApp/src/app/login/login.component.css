@@ -122,3 +122,7 @@ input[type="text"]:placeholder, #password:placeholder {
 .error {
   color:#ff0000
 }
+
+.security {
+  color:#0d0d0d
+}

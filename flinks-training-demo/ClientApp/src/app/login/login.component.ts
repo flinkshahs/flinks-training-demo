@@ -12,7 +12,11 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   @Input() username: string;
   @Input() password: string;
+  @Input() answer: string;
   error: boolean = false;
+  authorized: boolean = false;
+  firstBoxPlaceholder: string = "Username";
+  buttonText: string = "Log In";
 
   constructor(private authorizationService:AuthorizationService) {}
 
@@ -20,6 +24,8 @@ export class LoginComponent {
   setClasses() {
     let classes = {
       'error': this.error,
+      'authorized': this.authorized,
+      firstBoxPlaceholder: this.firstBoxPlaceholder 
     }
     return classes;
   }
@@ -33,13 +39,23 @@ export class LoginComponent {
 
  
   onLogin(){
-    console.log(this.username, this.password);
+    if (this.authorized){
+      this.onSubmit();
+      return;
+    } 
     if (this.authorizationService.onLogin(this.username, this.password) !== "203"){
       this.error = true;
+    } else{
+      this.authorized = true;
+      this.firstBoxPlaceholder = "Answer";
+      this.buttonText = "Enter"
+      this.username = "";
+      this.password = "";
     }
-    console.log(this.authorizationService.onLogin(this.username, this.password));
   }
 
-
+  onSubmit(){
+    console.log("I can submit");
+  }
 
 }
