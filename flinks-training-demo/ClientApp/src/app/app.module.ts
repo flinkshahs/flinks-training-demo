@@ -37,6 +37,7 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
       { path: 'login', component: LoginComponent},
       { path: 'fetch-answer', component: FetchAnswerComponent },
       { path: 'fetch-summary', component: FetchSummaryComponent },
+      { path: 'fetch-detail', component: FetchDetailComponent },
     ])
   ],
   providers: [],
