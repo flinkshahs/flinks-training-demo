@@ -1,0 +1,80 @@
+
+<div class="wrapper rounded">
+    <!-- Transaction information -->
+    <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
+        <a class="navbar-brand" href="#">Investments Transaction History<p class="text-muted pl-1">Hi! We carefully retrieved your latest
+                investments transactions:</p> </a> <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span> </button>
+    </nav>
+    <div class="row mt-2 pt-2">
+        <div class="col-md-6" id="income">
+            <div class="d-flex justify-content-start align-items-center">
+                <p class="fa fa-long-arrow-down"></p>
+                <p class="text mx-3">Income</p>
+                <p class="text-white ml-4 money">${{getIncome()}}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex justify-content-md-end align-items-center">
+                <div class="fa fa-long-arrow-up"></div>
+                <div class="text mx-3">Expense</div>
+                <div class="text-white ml-4 money">${{getExpense()}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <ul class="nav nav-tabs w-75">
+            <li class="nav-item"> <a class="nav-link active" href="#history">History</a> </li>
+        </ul>
+    </div>
+    <div class="table-responsive mt-3">
+        <table class="table table-dark table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Date</th>
+                    <th scope="col" class="text-right">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of invTransactions; index as i">
+                    <td scope ="row"><span class="fa fa-exchange mr-1"></span> {{transaction.Type.toUpperCase()}}</td>
+                    <td scope="row"> {{transaction.Description}} </td>
+                    <td class="text-muted">{{transaction.Date}}</td>
+                    <td class="d-flex justify-content-end align-items-center"> <span
+                            class="fa {{getTransactionArrow(transaction)}} mr-1"></span> {{getAmount(transaction)}}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                    <th scope="col" class="text-right">P/L OPEN</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+
+                    <th scope="col" class="text-right" [style.color]="getProfitColor()">{{getProfit()}}</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="d-flex justify-content-between align-items-center results"> <span class="pl-md-3">Showing<b
+                class="text-white"> 1-{{invTransactions.length}} 0f {{invTransactions.length}} </b> trasactions</span>
+        <div class="pt-3">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item disabled"> <a class="page-link" href="#" aria-label="Previous"> <span
+                                aria-hidden="true">&lt;</span> </a> </li>
+                    <li class="page-item disabled"> <a class="page-link" href="#" aria-label="Next"> <span
+                                aria-hidden="true">&gt;</span> </a> </li>
+                </ul>
+            </nav>
+        </div>

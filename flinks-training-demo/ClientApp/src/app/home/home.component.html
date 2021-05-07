@@ -1,3 +1,37 @@
+<h1>Account Summary</h1>
+<div *ngIf="loginId">
+  <p>{{title}} Account - {{accountNumber}}</p>
+  <ul>
+    <li *ngIf="holder">Account Holder: {{holder}}</li>
+    <li *ngIf="transitNumber">Transit #: {{transitNumber}} </li>
+    <li *ngIf="institutionNumber">Institution #: {{institutionNumber}}</li>
+    <li *ngIf="overdraftLimit">Overdraft Limit: {{overdraftLimit}}</li>
+    <li>Account Type: {{type}}</li>
+    <li>Currency: {{currency}}</li>
+  </ul>
+  <p>Balances</p>
+  <ul>
+    <li *ngIf="availableBalance">Available Balance: ${{availableBalance}}</li>
+    <li *ngIf="currentBalance"> Current Balance: ${{currentBalance}}</li>
+    <li *ngIf="limitBalance">Limit Balance: ${{limitBalance}}</li>
+  </ul>
+</div>
+
+
+<button (click)=changeInfo()>Try Out Info</button>
+
+<br><br>
+<button (click)="this.isButtonVisible = true;">Get Account Details</button>
+<div *ngIf="this.isButtonVisible">
+  <!-- <app-account-details></app-account-details> -->
+  <app-account-summary></app-account-summary>
+
+  
+  <app-holder-information></app-holder-information>
+  <app-balance-information></app-balance-information>
+  <app-transaction-history></app-transaction-history>
+  <app-inv-transaction-history></app-inv-transaction-history>
+  
 <div class="rectangle" id="home"><img src="../../assets/images/flinks-placeholder.jpg" alt="">
   <h1>Flinks Capital</h1>
   <p>The Best Bank There Is</p>

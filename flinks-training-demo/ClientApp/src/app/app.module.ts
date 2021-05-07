@@ -9,6 +9,12 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { TransactionHistoryComponent } from './account-details/transaction-history/transaction-history.component';
+import { HolderInformationComponent } from './account-details/holder-information/holder-information.component';
+import { BalanceInformationComponent } from './account-details/balance-information/balance-information.component';
+import { InvTransactionHistoryComponent } from './investements/inv-transaction-history/inv-transaction-history.component';
+import { AccountSummaryComponent } from './account-summary/account-summary.component';
 import { SecurityQuestionComponent } from './security-question/security-question.component';
 import { LoginComponent } from './login/login.component';
 import { FetchAnswerComponent } from './fetch-answer/fetch-answer.component';
@@ -22,6 +28,12 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
+    AccountDetailsComponent,
+    TransactionHistoryComponent,
+    HolderInformationComponent,
+    BalanceInformationComponent,
+    InvTransactionHistoryComponent,
+    AccountSummaryComponent,
     SecurityQuestionComponent,
     LoginComponent,
     FetchAnswerComponent,
@@ -34,6 +46,8 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'get-account-details', component: CounterComponent },
+      { path: 'log-out', component: FetchDataComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'security-question', component: SecurityQuestionComponent },

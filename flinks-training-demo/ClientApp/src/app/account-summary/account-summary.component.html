@@ -1,0 +1,73 @@
+<div class="wrapper rounded">
+    <nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white title">Account Summary <a class = "ul" *ngIf = "selectedAccount.title"> –– {{selectedAccount.title}}</a><p *ngIf ="!selectedAccount.holder" class="pl-1 text-muted">The details of your account are below.</p> <p *ngIf = "selectedAccount.holder" class="pl-1 text-muted">The details of {{selectedAccount.holder}}'s account are below.</p> </a>
+  
+    </nav>
+    
+    <p class = "text-white pt-3">{{selectedAccount.type}} Account in {{selectedAccount.currency}} - #{{selectedAccount.accountNumber}}</p>
+    
+    
+    <div class="row mt-3 pt-2 d-flex align-items-center">
+    <div *ngIf = "selectedAccount.transitNumber" class="col-sm ">
+        <div class="d-flex align-items-center">
+            <td scope="row"> <span class="fa fa-arrows-h mb-3"></span>  </td>
+            <p class="text mx-3">Transit Number: </p>
+            <p class="text-white ml-4 ">{{selectedAccount.transitNumber}}</p>
+        </div>
+    </div>
+    <div *ngIf = "selectedAccount.institutionNumber" class="col-sm">
+        <div class=" d-flex align-items-center">
+            <td scope="row"> <span class="fa fa-briefcase mb-3"></span>  </td>
+            <div class="text mx-3 mb-3">Institution Number: </div>
+            <div class="text-white ml-4 mb-3 ">{{selectedAccount.institutionNumber}}</div>
+        </div>
+    </div>
+    <div *ngIf = "selectedAccount.overdraftLimit"  class="col-sm">
+      <div class=" d-flex align-items-center">
+        <td scope="row"> <span class="fa fa-long-arrow-up mb-3"></span>  </td>
+          <div class="text mx-3 mb-3">Overdraft Limit: </div>
+          <div class="text-white mb-3 ml-4 ">${{selectedAccount.overdraftLimit}}</div>
+      </div>
+    </div>
+    </div>
+    
+    
+    
+    
+    <div *ngIf="selectedAccount.availableBalance || selectedAccount.currentBalance || selectedAccount.limitBalance">
+    
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <a class = "text-white"> Balances</a>
+    </div>
+    <div class="row mt-3 pt-2 d-flex align-items-center">
+      <div *ngIf = "selectedAccount.availableBalance" class="col-sm ">
+          <div class="d-flex align-items-center">
+              <p class="text-balance mx-3">Available Balance: </p>
+              <p class=" ml-4 money">${{selectedAccount.availableBalance}}</p>
+          </div>
+      </div>
+      <div *ngIf = "selectedAccount.currentBalance" class="col-sm">
+          <div class=" d-flex align-items-center">
+              <div class="text-balance mx-3 mb-3">Current Balance: </div>
+              <div class="ml-4 mb-3 money">${{selectedAccount.currentBalance}}</div>
+          </div>
+      </div>
+      <div *ngIf = "selectedAccount.limitBalance"  class="col-sm">
+        <div class=" d-flex align-items-center">
+            <div class="text-balance mx-3 mb-3">Balance Limit: </div>
+            <div class="mb-3 ml-4 money">${{selectedAccount.limitBalance}}</div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    
+    <!--if no log in id output message-->
+    
+    <div class = " dark wrapper rounded" *ngIf = "!selectedAccount">
+    <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand"><p class="text-white pl-1">You have not yet logged in successfully.</p> </a> 
+    </nav>
+    </div>
+    
+  

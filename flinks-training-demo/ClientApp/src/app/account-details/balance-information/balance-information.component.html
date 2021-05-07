@@ -1,0 +1,37 @@
+<div class="wrapper rounded">
+
+    <!-- Balance: -->
+    
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
+        <a class="navbar-brand" href="#">Balance<p class="text-muted pl-1"></p> </a> <button class="navbar-toggler"
+            type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    </nav>
+    <div class="row">
+            <div class="col-md-8">
+                <p class="text mx-3"><span class="text-white ml-4 fa fa-money" style="margin-right:5px;"></span> Your current balance on your <strong>{{account.Type}} </strong>account is:</p>
+            </div>
+            <div class="col-md4"><p class="text-white text-right" style="margin-left:50px; margin-top: 8px;">${{holder.Balance.Current}}</p></div>
+            
+    </div> -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start">
+        <a class="navbar-brand" href="#">Balance<p class="text-muted pl-1"></p> </a> <button class="navbar-toggler"
+            type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    </nav>
+
+    <div>
+        <div class="d-flex justify-content-start align-items-center">
+            <p class="text-white ml-4 fa fa-money"></p>
+            <p class="text mx-3">Your current balance on your <strong>{{account.Type}} </strong>account is: </p>
+            <p class="text-white ml-4 money">${{holder.Balance.Current}}</p>
+        </div>
+    </div>
+
+
+    <!--  -->
+    <div class="d-flex justify-content-between align-items-center results"> <span class="pl-md-3"></span>
+            <div class="pt-3"></div>
+    </div>
+</div>
