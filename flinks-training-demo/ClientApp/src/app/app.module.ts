@@ -15,6 +15,7 @@ import { HolderInformationComponent } from './account-details/holder-information
 import { BalanceInformationComponent } from './account-details/balance-information/balance-information.component';
 import { InvTransactionHistoryComponent } from './investements/inv-transaction-history/inv-transaction-history.component';
 import { AccountSummaryComponent } from './account-summary/account-summary.component';
+import { SecurityQuestionComponent } from './security-question/security-question.component';
 import { LoginComponent } from './login/login.component';
 import { FetchAnswerComponent } from './fetch-answer/fetch-answer.component';
 import { FetchSummaryComponent } from './fetch-summary/fetch-summary.component';
@@ -33,6 +34,7 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
     BalanceInformationComponent,
     InvTransactionHistoryComponent,
     AccountSummaryComponent,
+    SecurityQuestionComponent,
     LoginComponent,
     FetchAnswerComponent,
     FetchSummaryComponent,
@@ -48,9 +50,11 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
       { path: 'log-out', component: FetchDataComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'security-question', component: SecurityQuestionComponent },
       { path: 'login', component: LoginComponent},
       { path: 'fetch-answer', component: FetchAnswerComponent },
       { path: 'fetch-summary', component: FetchSummaryComponent },
+      { path: 'fetch-detail', component: FetchDetailComponent },
     ])
   ],
   providers: [],

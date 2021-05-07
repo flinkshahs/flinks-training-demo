@@ -15,10 +15,6 @@ export class FetchSummaryComponent{
     console.log("Account Summary started");
     http.get<Array<AccountSummary>>(baseUrl + 'customer/getaccountsummary').subscribe(result => {
         this.accountSummary = result;
-        if (this.accountSummary[0].title == null)
-          console.log("It failed :(")
-        else
-          console.log("this is title " + this.accountSummary[0].title);
     }, error => console.error(error));
 
   }

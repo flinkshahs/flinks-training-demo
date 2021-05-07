@@ -1,4 +1,5 @@
 
+<!--Title of Page & holder intro-->
 <div *ngIf = accountSummary[0]>
   <nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white title">Account Summary 
   <p *ngIf="!accountSummary[0].name" class="pl-1 text-muted">The details of your account are below.</p>
@@ -9,6 +10,7 @@
 </div>
 
 
+<!--print out all accounts provided-->
 <div *ngFor = "let selectedAccount of accountSummary" class="wrapper rounded">
   <div class="d-flex justify-content-between align-items-center">
     <a class="text-white"> {{selectedAccount.title}}</a>
@@ -18,36 +20,7 @@
     #{{selectedAccount.accountNumber}}</p>
 
 
-<!--
-  <div class="row mt-3 pt-2 d-flex align-items-center">
-    <div *ngIf="selectedAccount.transitNumber" class="col-sm ">
-      <div class="d-flex align-items-center">
-        <td scope="row"> <span class="fa fa-arrows-h mb-3"></span> </td>
-        <p class="text mx-3">Transit Number: </p>
-        <p class="text-white ml-4 ">{{selectedAccount.transitNumber}}</p>
-      </div>
-    </div>
-    <div *ngIf="selectedAccount.institutionNumber" class="col-sm">
-      <div class=" d-flex align-items-center">
-        <td scope="row"> <span class="fa fa-briefcase mb-3"></span> </td>
-        <div class="text mx-3 mb-3">Institution Number: </div>
-        <div class="text-white ml-4 mb-3 ">{{selectedAccount.institutionNumber}}</div>
-      </div>
-    </div>
-    <div *ngIf="selectedAccount.overdraftLimit" class="col-sm">
-      <div class=" d-flex align-items-center">
-        <td scope="row"> <span class="fa fa-long-arrow-up mb-3"></span> </td>
-        <div class="text mx-3 mb-3">Overdraft Limit: </div>
-        <div class="text-white mb-3 ml-4 ">${{selectedAccount.overdraftLimit}}</div>
-      </div>
-    </div>
-  </div>
-
-  -->
-
-
-
-
+  <!--Output balances-->
   <div *ngIf="selectedAccount.availableBalance || selectedAccount.currentBalance || selectedAccount.limitBalance">
 
     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -77,73 +50,56 @@
     </div>
 
   </div>
-
-<!--if no log in id output message-->
-<!---
-  <div class=" dark wrapper rounded" *ngIf = "selectedAccount">
-    <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand">
-        <p class="text-white pl-1">You have not yet logged in successfully.</p>
-      </a>
-    </nav>
-  </div>
--->
-
 </div> 
 
-
+<!--if there are any accounts, output holder information-->
 <div *ngIf = "accountSummary[0]" >
-  <nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white ">Your Personal Address 
-</a>
+  <nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white ">Your Personal Address </a></nav>
+  <div class="table-responsive ">
+    <table class="table table-dark table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Civic Address</th>
+                <th scope="col">City</th>
+                <th scope="col">Province</th>
+                <th scope="col">Postal Code</th>
+                <th scope="col">Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row"> <span class="fa fa-home mr-0"></span> &nbsp; {{accountSummary[0].civicAddress}} </td>
+                <td class="text-muted">{{accountSummary[0].city}}</td>
+                <td class="text-muted">{{accountSummary[0].province}}</td>
+                <td class="text-muted">{{accountSummary[0].postalCode}}</td>
+                <td class="text-muted">{{accountSummary[0].Country}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
 
-</nav>
+  <nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white ">Your Contact Information 
+  </a>
 
+  </nav>
 
-
-<div class="table-responsive ">
-  <table class="table table-dark table-borderless">
-      <thead>
-          <tr>
-              <th scope="col">Civic Address</th>
-              <th scope="col">City</th>
-              <th scope="col">Province</th>
-              <th scope="col">Postal Code</th>
-              <th scope="col">Country</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td scope="row"> <span class="fa fa-home mr-0"></span> &nbsp; {{accountSummary[0].civicAddress}} </td>
-              <td class="text-muted">{{accountSummary[0].city}}</td>
-              <td class="text-muted">{{accountSummary[0].province}}</td>
-              <td class="text-muted">{{accountSummary[0].postalCode}}</td>
-              <td class="text-muted">{{accountSummary[0].Country}}</td>
-          </tr>
-      </tbody>
-  </table>
-</div>
-
-<nav class="dark d-lg-flex align-items-lg-start"> <a class="navbar-brand text-white ">Your Contact Information 
-</a>
-
-</nav>
-
-<div class="table-responsive ">
-  <table class="table table-dark table-borderless">
-      <thead>
-          <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone Number</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td scope="row"> <span class="fa fa-user mr-0"></span> &nbsp; {{accountSummary[0].name}} </td>
-              <td class="text-muted">{{accountSummary[0].email}}</td>
-              <td class="text-muted">{{accountSummary[0].phoneNumber}}</td>
-          </tr>
-      </tbody>
-  </table>
-</div>
+  <div class="table-responsive ">
+    <table class="table table-dark table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row"> <span class="fa fa-user mr-0"></span> &nbsp; {{accountSummary[0].name}} </td>
+                <td class="text-muted">{{accountSummary[0].email}}</td>
+                <td class="text-muted">{{accountSummary[0].phoneNumber}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
 </div>
 
