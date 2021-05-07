@@ -49,5 +49,7 @@ namespace flinks_training_demo
 
     public string id { get; set; }
 
+    public List<Transaction> transactions { get; set; }
+
   }
 }
