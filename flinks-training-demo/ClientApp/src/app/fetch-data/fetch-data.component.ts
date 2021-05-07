@@ -13,8 +13,7 @@ export class FetchDataComponent {
 
     var credentials = ["Greatday", "Everyday"]
     
-    console.log("Login started");
-    http.post<Customer>(baseUrl + 'login', credentials).subscribe(result => {
+    http.post<Customer>(baseUrl + 'customer/login', credentials).subscribe(result => {
         this.user = result;
         if (this.user.username == null)
           console.log("Wrong credentials")
