@@ -32,7 +32,7 @@ import { FetchDetailComponent } from './fetch-detail/fetch-detail.component';
     HolderInformationComponent,
     BalanceInformationComponent,
     InvTransactionHistoryComponent,
-    AccountSummaryComponent
+    AccountSummaryComponent,
     LoginComponent,
     FetchAnswerComponent,
     FetchSummaryComponent,
