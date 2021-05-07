@@ -18,7 +18,7 @@ export class FetchSummaryComponent{
         if (this.accountSummary[0].title == null)
           console.log("It failed :(")
         else
-          console.log("this is title" + this.accountSummary[0].title);
+          console.log("this is title " + this.accountSummary[0].title);
     }, error => console.error(error));
 
   }
