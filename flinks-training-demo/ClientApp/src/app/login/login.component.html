@@ -11,11 +11,13 @@
 
     <!-- Login Form -->
     <form (ngSubmit)="onLogin()">
-      <p class="security" [style.visibility]="(!authorized) ? 'hidden':'visible'">Security Question Here!</p>
-      <input type="text" id="login" name="login" [(ngModel)]="username" placeholder={{firstBoxPlaceholder}}>
+      <p class="security" [style.visibility]="(!authorized) ? 'hidden':'visible'">{{securityQuestion}}</p>
+      <input type="text" id="answer" name = "login" [style.visibility]="(authorized) ? 'visible':'hidden'" [(ngModel)]="answer" placeholder={{firstBoxPlaceholder}}>
+      <input type="text" id="login" name="login" [style.visibility]="(authorized) ? 'hidden':'visible'" [(ngModel)]="username" placeholder={{firstBoxPlaceholder}}>
       <input type="password" id="password"  name="login" [(ngModel)]="password" [style.visibility]="(authorized) ? 'hidden':'visible'" placeholder="Password">
       <input type="submit" value={{buttonText}}>
-      <p class="error" [style.visibility]="(!error || authorized) ? 'hidden':'visible'">Error in login.</p>
+      <p class="error" [style.visibility]="(!error) ? 'hidden':'visible'">{{errorMessage}}</p>
+      <p class="error2" [style.visibility]="(!error2) ? 'hidden':'visible'">{{errorMessage}}</p>
     </form>
 
     <!-- Remind Passowrd -->

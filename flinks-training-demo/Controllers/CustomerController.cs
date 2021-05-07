@@ -92,6 +92,7 @@ namespace flinks_training_demo.Controllers
       foreach (var securityChallenge in c.securityChallenges)
       {
         Console.WriteLine(securityChallenge.Prompt);
+        Console.WriteLine(answer[0]);
         securityChallenge.Answer = answer[0];
       }
 
@@ -101,6 +102,7 @@ namespace flinks_training_demo.Controllers
 
       TempData["Customer"] = JsonConvert.SerializeObject(c);
       m.message = response.Message;
+      Console.WriteLine(response.Message);
       return m;
     }
 
