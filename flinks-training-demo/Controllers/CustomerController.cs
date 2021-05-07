@@ -145,6 +145,7 @@ namespace flinks_training_demo.Controllers
         accountSummary.Add(a);
       }
 
+      TempData["Customer"] = JsonConvert.SerializeObject(c);
       return accountSummary;
     }
 
